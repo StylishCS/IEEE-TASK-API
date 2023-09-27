@@ -3,7 +3,7 @@ const { Message } = require("../model/Message");
 async function sendMessageController(req,res){
     try {
         const sent = await Message.find({email: req.body.email});
-        if(sent){
+        if(sent.length>0){
             return res.status(400).json({msg:"already sent.."})
         }
         const message = new Message({
